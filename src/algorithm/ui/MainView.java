@@ -3,6 +3,11 @@
  */
 package algorithm.ui;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import algorithm.core.Analyzer;
 import algorithm.core.LoadInputFile;
 
 /**
@@ -20,10 +25,13 @@ public class MainView {
 
 	/**
 	 * @param args
+	 * @throws ParseException 
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws ParseException {
+		 
+			// TODO Auto-generated method stub
 		new LoadInputFile().loadFile();
+		new Analyzer();
 	}
 
 }
