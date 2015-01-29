@@ -30,15 +30,26 @@ public class LoadInputFile {
 		try {
 			 
 			br = new BufferedReader(new FileReader(csvFile));
+			boolean firstTime=true;
 			while ((line = br.readLine()) != null) {
+				if(firstTime){
+					firstTime=false;
+					continue;
+				}
 	 		        // use comma as separator
 				String[] attributes= line.split(cvsSplitBy);
+				Container tmp=new Container();
+				tmp.setId(Initializer.dataContainer.size());
+				tmp.setTime(attributes[0]);
+				tmp.setX(Double.parseDouble(attributes[1]));
+				tmp.setY(Double.parseDouble(attributes[2]));
 
-				for (String string : attributes) {
-						System.out.println(string);
-				}
-				System.out.println("");
-				
+				tmp.setCourseDegs(Double.parseDouble(attributes[3]));
+
+				tmp.setSpeed(Double.parseDouble(attributes[4]));
+				tmp.setBearingDegs(Double.parseDouble(attributes[5]));
+				Initializer.dataContainer.add(tmp);
+ 				
 			}
 	 
 		} catch (FileNotFoundException e) {
@@ -54,8 +65,10 @@ public class LoadInputFile {
 				}
 			}
 		}
-	 
-		System.out.println("Done");
+//		for(int i=0;i<Initializer.dataContainer.size();i++){
+//			System.out.println(Initializer.dataContainer.get(i).getTime());
+//		}
+		System.out.println("loading Data Done");
 	  
 	 
 	}

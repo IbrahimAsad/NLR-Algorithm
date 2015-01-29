@@ -3,6 +3,8 @@
  */
 package algorithm.core;
 
+import java.util.ArrayList;
+
 /**
  * @author Ibrahim
  *
@@ -10,7 +12,7 @@ package algorithm.core;
 public final  class Initializer {
 	
 	public static String fileName="";
-	
+	public static ArrayList<Container >dataContainer=new ArrayList<Container>();
 	/**
 	 * 
 	 */
