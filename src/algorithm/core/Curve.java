@@ -65,5 +65,11 @@ public class Curve {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+//		return super.toString();
+	return "time "+time+", bearing "+bearing+", Start "+startTime+" , End "+endTime;
+	}
 
 }

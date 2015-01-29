@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class CurveGenerator {
 	private ArrayList<Container> localData;
-	private ArrayList<Curve> curveList;
+	private ArrayList<Curve> curveList=new ArrayList<Curve>();
 	
 	/**
 	 * 
