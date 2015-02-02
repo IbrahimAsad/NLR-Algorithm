@@ -41,7 +41,7 @@ public class CurveGenerator {
 			try {
 				Curve curve=new Curve();
 				curve.setTime((int) ((formatter.parse(localData.get(i+1).getTime()).getTime()-formatter.parse(localData.get(i).getTime()).getTime())/1000));
-				curve.setBearing(localData.get(i+1).getBearingDegs()-localData.get(i).getBearingDegs());
+				curve.setBearing(localData.get(i+1).getCourseDegs()-localData.get(i).getCourseDegs());
 				curve.setStartTime(localData.get(i).getTime());
 				curve.setEndTime(localData.get(i+1).getTime());
 				curveList.add(curve);

@@ -19,6 +19,14 @@ public class Container {
 	private double bearingDegs;
 	
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "time="+time+", x="+x+", y="+y+", courseDegs="+courseDegs+", speed="+speed+" , bearingDegs="+bearingDegs;
+//		return super.toString();
+	}
+	
+	
 	/**
 	 * 
 	 */
@@ -151,5 +159,7 @@ public class Container {
 	public void setCourseDegs(double courseDegs) {
 		this.courseDegs = courseDegs;
 	}
+	
+	
 
 }

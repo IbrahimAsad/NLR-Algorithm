@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class LoadInputFile {
 
-	String csvFile = "../ArcTan_Data.csv";
+	String csvFile = "../input.csv";
 	BufferedReader br = null;
 	String line = "";
 	String cvsSplitBy = ",";
@@ -66,7 +66,7 @@ public class LoadInputFile {
 			}
 		}
 //		for(int i=0;i<Initializer.dataContainer.size();i++){
-//			System.out.println(Initializer.dataContainer.get(i).getTime());
+//			System.out.println(Initializer.dataContainer.get(i).getBearingDegs());
 //		}
 		System.out.println("loading Data Done");
 	  
