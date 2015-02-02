@@ -5,6 +5,8 @@ package algorithm.core;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  * @author Ibrahim
@@ -22,6 +24,13 @@ public class Extractor {
 	private double B0=-117;
 	private double Q=-2;
 	private double P=31;
+	
+	private double bestB0=0;
+	private double bestQ=0;
+	private double bestP=0;
+	
+	private double bestError=999999;
+	
 	
 	private double tiIncremnt=0.000578703708;
 	private double ti=tiIncremnt;
@@ -49,7 +58,8 @@ public class Extractor {
 	 */
 	public Extractor() {
 		// TODO Auto-generated constructor stub
-		evaluateDataSet();
+//		evaluateDataSet();
+		startFinding();
 	}
 	private void incrementTime(){
 		this.ti+=this.tiIncremnt;
@@ -67,14 +77,73 @@ public class Extractor {
 			incrementTime();
 			
 		}
-		for(int i=0;i<orgBearing.size();i++){
-//			System.out.println(orgBearing.get(i) +" - "+ currentBearing.get(i) +"= "+error_List.get(i));
-//			System.out.println(currentBearing.get(i));
+//		for(int i=0;i<orgBearing.size();i++){
+////			System.out.println(orgBearing.get(i) +" - "+ currentBearing.get(i) +"= "+error_List.get(i));
+////			System.out.println(currentBearing.get(i));
+//		}
+////		System.out.println("total erros "+);
+//		System.out.println(Q+","+P+","+B0+ " error ="+totalError+  " , BEST= "+bestError);
+//		System.out.println();
+//		System.out.println("B0="+B0);
+		
+		if(totalError<bestError){
+			System.out.println(bestError);
+			bestError=totalError;
+			bestB0=B0;
+			bestQ=Q;
+			bestP=P;
+			System.out.println("GREAAAT NEWS");	
+			System.out.println(bestError);
+
+//			waitResponse();
 		}
-		System.out.println("total erros "+totalError);
-		System.out.println("P="+P);
-		System.out.println("Q="+Q);
-		System.out.println("B0="+B0);
+		
+//		changeNumbers();
+		
+		reset();
+//		evaluateDataSet();
+	}
+	private void startFinding(){
+		
+		for(int iq=-200; iq <= 200 ; iq++){
+			for(int ip=-200;ip<=200;ip++){
+				for(int ib0=-200;ib0<=200;ib0++){
+					B0=ib0;
+					P=ip;
+					Q=iq;
+					evaluateDataSet();
+				}
+			}
+
+			System.out.println(bestQ+","+bestP+","+bestB0+ " error ="+totalError+  " , BEST= "+bestError);
+		}
+		
+		System.out.println("bestError "+bestError);
+		System.out.println("B0 =" +bestB0);
+		System.out.println("Q ="+bestQ);
+		System.out.println("P ="+bestP);
+		
+		
+		
+		
+//		Q++;
+//		B0--;
+//		P+=2;
+//		Q=Math.random();
+//		B0=Math.random();
+//		P=Math.random();
+	}
+	private void reset(){
+		error_List.clear();
+		currentBearing.clear();
+		orgBearing.clear();
+		totalError=0;
+		ti=tiIncremnt;
+	}
+	
+	public void waitResponse(){
+		Scanner x=new Scanner(System.in);
+		x.nextInt();
 	}
 	
 	public double eval(){
