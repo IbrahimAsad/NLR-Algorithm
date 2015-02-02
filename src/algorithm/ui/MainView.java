@@ -35,7 +35,7 @@ public class MainView {
 			// TODO Auto-generated method stub
 		new LoadInputFile().loadFile();
 		Extractor a= new Extractor();
-		System.out.println(a.eval());
+//		System.out.println(a.eval());
 		
 		
 //		for(int i=0;i<Initializer.dataContainer.size();i++)
