@@ -20,10 +20,11 @@ public class Extractor {
 	private ArrayList<Double> orgBearing = new ArrayList<Double>();
 	private ArrayList<Double> currentBearing = new ArrayList<Double>();
 	private ArrayList<Container> data=Initializer.dataContainer;
-	
-	private double B0=-117;
-	private double Q=-2;
-	private double P=31;
+
+	DecimalFormat x=new DecimalFormat("###.############");
+	private double B0=-54;
+	private double Q=-27;
+	private double P=7;
 	
 	private double bestB0=0;
 	private double bestQ=0;
@@ -31,9 +32,10 @@ public class Extractor {
 	
 	private double bestError=999999;
 	
-	
+	// for the Leg 2
+	private double tiStart=0.000578703708*69;
 	private double tiIncremnt=0.000578703708;
-	private double ti=tiIncremnt;
+	private double ti=tiStart;
 	
 	private double atan(double x , double y){
 		return Math.atan2(y,x);
@@ -46,7 +48,6 @@ public class Extractor {
 	}
 	
 	private double calculateBi(){ 
-		DecimalFormat x=new DecimalFormat("###.############");
 		return atan((sin(Math.toRadians(B0))) +Double.parseDouble(x.format(P*ti)),(cos(Math.toRadians(B0))+Double.parseDouble(x.format(Q*ti))));
 
 		//		//=DEGREES(ATAN2(SIN(RADIANS(-54))+(7*0.07175925934),COS(RADIANS(-54))+(-27*0.07175925934))
@@ -66,14 +67,15 @@ public class Extractor {
 	}
 	
 	public void evaluateDataSet(){
-		for(int i=2;i<data.size();i++){
-			double orgB=data.get(i).getBearingDegs();
-			double curB=eval();
-			orgBearing.add(orgB);
-			currentBearing.add(curB);
-			double curError=Math.pow((curB-orgB), 2);
+		double orgB,curB,curError;
+		for(int i=1;i<data.size();i++){
+			orgB=data.get(i).getBearingDegs();
+			curB=eval();
+//			orgBearing.add(orgB);
+//			currentBearing.add(curB);
+			curError=Math.pow((curB-orgB), 2);
 			totalError+=curError;
-			error_List.add(curError);
+//			error_List.add(curError);
 			incrementTime();
 			
 		}
@@ -105,16 +107,17 @@ public class Extractor {
 	}
 	private void startFinding(){
 		
-		for(int iq=-200; iq <= 200 ; iq++){
-			for(int ip=-200;ip<=200;ip++){
-				for(int ib0=-200;ib0<=200;ib0++){
+//		evaluateDataSet();
+		for(int  iq=-100; iq <= 100 ; iq+=+1){
+			for(int ip=-100;ip<=100;ip+=1){
+				for(int ib0=-100;ib0<=100;ib0+=1){
 					B0=ib0;
 					P=ip;
 					Q=iq;
 					evaluateDataSet();
 				}
 			}
-
+			System.out.println("Q="+Q+" , P="+P+" ,B0="+B0);
 			System.out.println(bestQ+","+bestP+","+bestB0+ " error ="+totalError+  " , BEST= "+bestError);
 		}
 		
@@ -134,11 +137,11 @@ public class Extractor {
 //		P=Math.random();
 	}
 	private void reset(){
-		error_List.clear();
-		currentBearing.clear();
-		orgBearing.clear();
+//		error_List.clear();
+//		currentBearing.clear();
+//		orgBearing.clear();
 		totalError=0;
-		ti=tiIncremnt;
+		ti=tiStart;
 	}
 	
 	public void waitResponse(){

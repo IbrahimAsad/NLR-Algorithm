@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class LoadInputFile {
 
-	String csvFile = "../input.csv";
+	String csvFile = "../input2.csv";
 	BufferedReader br = null;
 	String line = "";
 	String cvsSplitBy = ",";
