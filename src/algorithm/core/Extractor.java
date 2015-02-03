@@ -108,9 +108,9 @@ public class Extractor {
 	private void startFinding(){
 		
 //		evaluateDataSet();
-		for(int  iq=-100; iq <= 100 ; iq+=+1){
-			for(int ip=-100;ip<=100;ip+=1){
-				for(int ib0=-100;ib0<=100;ib0+=1){
+		for(double  iq=-35; iq <= -25 ; iq+=+.1){
+			for(double ip=0;ip<=10;ip+=.1){
+				for(double ib0=-50;ib0<=-30;ib0+=.1){
 					B0=ib0;
 					P=ip;
 					Q=iq;
